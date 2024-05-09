@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
         self.ui.actionOpen_Music.triggered.connect(self.open_music)
         self.ui.toolButtonPlay.clicked.connect(self.play_music)
         self.ui.horizontalSliderVolume.sliderMoved.connect(self.volume_slider_changed)
-        self.ui.hozizontalSliderVolume.setValue(self.audioVolumeLevel)
+        self.ui.horizontalSliderVolume.setValue(self.audioVolumeLevel)
         self.ui.horizontalSliderPlay.sliderMoved.connect(self.play_slider_changed)
         self.ui.toolButtonPause.clicked.connect(self.pause_btn)
         self.ui.toolButtonStop.clicked.connect(self.stop_btn)
