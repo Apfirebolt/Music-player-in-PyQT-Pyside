@@ -23,7 +23,7 @@ class MainWindow(QMainWindow):
 
         self.audioVolumeLevel = 70
         self.player.setAudioOutput(self.audio)
-        self.audio.setVolume(self.audioVolumeLevel)
+        self.audio.setVolume(self.audioVolumeLevel/100)
 
 
         self.ui.actionOpen_Music.triggered.connect(self.open_music)
@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
 
     def volume_slider_changed(self, position):
         self.audioVolumeLevel = position
-        self.audio.setVolume(position)
+        self.audio.setVolume(position/100)
 
     def play_slider_changed(self, position):
         self.player.setPosition(position)
