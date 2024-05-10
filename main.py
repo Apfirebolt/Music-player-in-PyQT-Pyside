@@ -21,13 +21,15 @@ class MainWindow(QMainWindow):
         self.player = QMediaPlayer()
         self.audio = QAudioOutput()
 
+        self.audioVolumeLevel = 70
         self.player.setAudioOutput(self.audio)
-        self.audio.setVolume(self.ui.horizontalSliderVolume.value())
+        self.audio.setVolume(self.audioVolumeLevel/100)
 
 
         self.ui.actionOpen_Music.triggered.connect(self.open_music)
         self.ui.toolButtonPlay.clicked.connect(self.play_music)
         self.ui.horizontalSliderVolume.sliderMoved.connect(self.volume_slider_changed)
+        self.ui.horizontalSliderVolume.setValue(self.audioVolumeLevel)
         self.ui.horizontalSliderPlay.sliderMoved.connect(self.play_slider_changed)
         self.ui.toolButtonPause.clicked.connect(self.pause_btn)
         self.ui.toolButtonStop.clicked.connect(self.stop_btn)
@@ -72,7 +74,8 @@ class MainWindow(QMainWindow):
 
 
     def volume_slider_changed(self, position):
-        self.audio.setVolume(position)
+        self.audioVolumeLevel = position
+        self.audio.setVolume(position/100)
 
     def play_slider_changed(self, position):
         self.player.setPosition(position)
@@ -90,7 +93,7 @@ class MainWindow(QMainWindow):
             self.muted = False
         else:
             self.audio.setMuted(False)
-            self.ui.horizontalSliderVolume.setValue(50)
+            self.ui.horizontalSliderVolume.setValue(self.audioVolumeLevel)
             self.ui.toolButtonVolume.setIcon(QIcon(":/icons/volume.png"))
             self.muted = True
 
